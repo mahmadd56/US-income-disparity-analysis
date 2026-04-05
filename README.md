@@ -21,6 +21,38 @@ The analysis contributed to a **15% improvement in resource distribution modelin
 
 ---
 
+## 📊 Visualizations
+
+### 🗺️ Population Change Rate by County (2017–2022)
+![Population Change Rate Map](outputs/figures/map_pop_change_rate.png)
+> County-level choropleth showing where population grew or declined across the US. Darker counties indicate steeper population loss — concentrated heavily in rural Midwest and South.
+
+---
+
+### 🗺️ Area Classification Map (Metro / Micropolitan / Rural)
+![Area Classification Map](outputs/figures/map_area_classification.png)
+> Geographic distribution of Metropolitan (red), Micropolitan (green), and Rural (blue) counties across the US — the basis for all disparity comparisons in this study.
+
+---
+
+### 📦 Population Distribution by Area Type — 2017
+![Boxplot Total Population 2017](outputs/figures/boxplot_totalpop17.png)
+> Rural counties show a tighter, lower distribution with notable high-population outliers. Metro and Micropolitan areas have wider spreads, reflecting more internal variation.
+
+---
+
+### 📦 Population Distribution by Area Type — 2022
+![Boxplot Total Population 2022](outputs/figures/boxplot_totalpop22.png)
+> Comparison of 2022 population distributions across area types. Metro areas show slight widening — consistent with continued urbanization trends over the five-year period.
+
+---
+
+### 🔵 Employment vs. Population Change Rate (2017–2022)
+![Scatter Employment vs Population Change](outputs/figures/scatter_emp_pop_change.png)
+> Strong positive correlation between employment and population change rates across all area types. Rural counties (blue) dominate the lower-left — showing both population and job losses — while Metro areas (red) cluster toward the upper right.
+
+---
+
 ## 📁 Repository Structure
 
 ```
@@ -37,11 +69,15 @@ us-income-disparity-analysis/
 │   └── 04_visualizations.R   # Plots and dashboard outputs
 │
 ├── outputs/
-│   ├── figures/              # Charts and maps
-│   └── dashboards/           # Analytical dashboard exports
+│   └── figures/              # All saved plot images
+│       ├── map_pop_change_rate.png
+│       ├── map_area_classification.png
+│       ├── boxplot_totalpop17.png
+│       ├── boxplot_totalpop22.png
+│       └── scatter_emp_pop_change.png
 │
 ├── report/
-│   └── income_disparity_report.Rmd   # Full R Markdown report
+│   └── income_disparity_report.Rmd
 │
 └── README.md
 ```
@@ -54,17 +90,18 @@ us-income-disparity-analysis/
 |---|---|
 | Language | R |
 | Data Wrangling | `dplyr`, `tidyverse` |
-| Visualization | `ggplot2` |
+| Visualization | `ggplot2`, `plotly` |
 | Data Source | U.S. Census Bureau |
 | Reporting | R Markdown |
 
 ---
 
-## 📊 Key Findings
+## 📈 Key Findings
 
 - **25% income gap** identified between metropolitan and rural US populations
-- Rural areas consistently underserved in federal and state resource allocation models
-- Geographic clustering of high-disparity regions in the South and Appalachia
+- Rural counties show consistent **population and employment decline** (2017–2022)
+- Strong correlation between employment loss and population outmigration in rural areas
+- Geographic clustering of high-disparity regions in the rural Midwest and South
 - Recommendations improved **resource distribution efficiency by 15%**
 - Policy-aligned interventions estimated to **reduce inequality by 10%**
 
@@ -74,9 +111,9 @@ us-income-disparity-analysis/
 
 1. **Data Collection** — Pulled and merged multiple U.S. Census Bureau datasets covering income, population, and geographic classifications
 2. **Data Cleaning** — Standardized variables, handled missing values, and created reproducible ETL workflows
-3. **Metric Engineering** — Built custom metrics to compare metro vs. rural income levels across regions
-4. **Statistical Analysis** — Conducted comparative analysis to quantify the income gap by region and demographic group
-5. **Visualization** — Developed analytical dashboards and charts to surface inefficiencies and support decision-making
+3. **Metric Engineering** — Built custom metrics including GDP per capita change rate and population change rate (2017–2022)
+4. **Statistical Analysis** — Comparative analysis across Metro, Micropolitan, and Rural classifications
+5. **Visualization** — Choropleth maps, boxplots, and scatter plots to surface geographic and distributional patterns
 6. **Recommendations** — Translated findings into actionable policy and resource allocation recommendations
 
 ---
@@ -90,10 +127,15 @@ us-income-disparity-analysis/
 
 2. Open R or RStudio and install dependencies
    ```r
-   install.packages(c("tidyverse", "dplyr", "ggplot2"))
+   install.packages(c("tidyverse", "dplyr", "ggplot2", "plotly"))
    ```
 
-3. Run scripts in order
+3. Set working directory to project folder
+   ```r
+   setwd("/path/to/us-income-disparity-analysis")
+   ```
+
+4. Run scripts in order
    ```r
    source("scripts/01_data_cleaning.R")
    source("scripts/02_merging.R")
@@ -101,17 +143,12 @@ us-income-disparity-analysis/
    source("scripts/04_visualizations.R")
    ```
 
-4. View the full report
-   ```r
-   rmarkdown::render("report/income_disparity_report.Rmd")
-   ```
-
 ---
 
 ## 👤 Author
 
-**Muhammad Ahmad**
-Knox College — Data Science & Business Administration
+**Muhammad Ahmad**  
+Knox College — Data Science & Business Administration  
 📧 muahmad@knox.edu | [LinkedIn](#) | [GitHub](#)
 
 ---
